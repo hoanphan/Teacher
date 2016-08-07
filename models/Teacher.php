@@ -46,11 +46,39 @@ class Teacher extends \yii\db\ActiveRecord
         return [
             'id_gv' => Yii::t('app','serial'),
             'ho_ten' => Yii::t('app','full name'),
-            'id_to_bo_mon' => Yii::t('app','gruop room'),
-            'id_Khoa' => Yii::t('app','Khoa'),
+            'id_to_bo_mon' => 'Tổ bộ môn',
+            'id_Khoa' =>'Phòng khoa',
             'dinh_muc' => Yii::t('app','Dinh Muc'),
             'he_so_luong' =>  Yii::t('app','He So Luong'),
             'id_ngach' =>  Yii::t('app','Id Ngach'),
         ];
+    }
+    public function TenNgach($key)
+    {
+        $ngach=Ngach::findOne($key);
+        if(isset($ngach))
+        {
+            return $ngach->ten_ngach;
+        }
+        else
+            return "unknown";
+    }
+    public function LayPhongBan($key)
+    {
+        $phong=PhongKhoa::findOne($key);
+        if(isset($phong)) {
+            return $phong->ten;
+        }
+        else
+            return "Unknown";
+
+    }
+    public function LayTenTo($key)
+    {
+        $khoa=To_Bo_Mon::findOne($key);
+        if(isset($khoa))
+            return $khoa->ten;
+        else
+            return "Unknown";
     }
 }

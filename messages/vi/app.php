@@ -22,7 +22,7 @@ return [
     'Id Ngach' => 'Ngạch',
     'Khoa' => 'Khoa',
     'full name' => 'Họ và tên',
-    'gruop room' => 'Phòng ban',
+    'gruop room' => 'Tổ',
     'gruop subject' => '@@Tổ bộ môn@@',
     'Department' => 'Phòng ban - khoa',
     'Name' => 'Tên',

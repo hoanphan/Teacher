@@ -236,66 +236,11 @@
                     </li>
                 </ul>
             </li>
-
-
-            <li class="">
-                <a href="elements.html">
-                    <i class="menu-icon fa fa-caret-right"></i>
-                    Elements
-                </a>
-
-                <b class="arrow"></b>
-            </li>
-            <li class="">
-                <a href="buttons.html">
-                    <i class="menu-icon fa fa-caret-right"></i>
-                    Buttons &amp; Icons
-                </a>
-
-                <b class="arrow"></b>
-            </li>
-
-            <li class="">
-                <a href="content-slider.html">
-                    <i class="menu-icon fa fa-caret-right"></i>
-                    Content Sliders
-                </a>
-
-                <b class="arrow"></b>
-            </li>
-
-            <li class="">
-                <a href="treeview.html">
-                    <i class="menu-icon fa fa-caret-right"></i>
-                    Treeview
-                </a>
-
-                <b class="arrow"></b>
-            </li>
-
-            <li class="">
-                <a href="jquery-ui.html">
-                    <i class="menu-icon fa fa-caret-right"></i>
-                    jQuery UI
-                </a>
-
-                <b class="arrow"></b>
-            </li>
-
-            <li class="">
-                <a href="nestable-list.html">
-                    <i class="menu-icon fa fa-caret-right"></i>
-                    Nestable Lists
-                </a>
-
-                <b class="arrow"></b>
-            </li>
-
             <li class="">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-caret-right"></i>
 
-                    Three Level Menu
+                    Môn học
                     <b class="arrow fa fa-angle-down"></b>
                 </a>
 
@@ -303,53 +248,37 @@
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="#">
-                            <i class="menu-icon fa fa-leaf green"></i>
-                            Item #1
+                        <a href="<?=Url::toRoute("mon-hoc/index")?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Danh sách
                         </a>
 
                         <b class="arrow"></b>
                     </li>
 
                     <li class="">
-                        <a href="#" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-pencil orange"></i>
-
-                            4th level
-                            <b class="arrow fa fa-angle-down"></b>
+                        <a href="<?=Url::toRoute('mon-hoc/create')?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Thêm mới
                         </a>
 
                         <b class="arrow"></b>
-
-                        <ul class="submenu">
-                            <li class="">
-                                <a href="#">
-                                    <i class="menu-icon fa fa-plus purple"></i>
-                                    Add Product
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-
-                            <li class="">
-                                <a href="#">
-                                    <i class="menu-icon fa fa-eye pink"></i>
-                                    View Products
-                                </a>
-
-                                <b class="arrow"></b>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
             </li>
+
+
         </ul>
     </li>
+
+
+
+
 
     <li class="active open">
         <a href="#" class="dropdown-toggle">
             <i class="menu-icon fa fa-list"></i>
-            <span class="menu-text"> Tables </span>
+            <span class="menu-text"> Nhiệm vụ tại bậc </span>
 
             <b class="arrow fa fa-angle-down"></b>
         </a>
@@ -358,18 +287,18 @@
 
         <ul class="submenu">
             <li class="active">
-                <a href="tables.html">
+                <a href="<?=Url::toRoute("nhiem-vu-bac/index")?>">
                     <i class="menu-icon fa fa-caret-right"></i>
-                    Simple &amp; Dynamic
+                  Danh sách
                 </a>
 
                 <b class="arrow"></b>
             </li>
 
             <li class="">
-                <a href="jqgrid.html">
+                <a href="<?=Url::toRoute("nhiem-vu-bac/create")?>">
                     <i class="menu-icon fa fa-caret-right"></i>
-                    jqGrid plugin
+                   Thêm
                 </a>
 
                 <b class="arrow"></b>
@@ -380,7 +309,7 @@
     <li class="">
         <a href="#" class="dropdown-toggle">
             <i class="menu-icon fa fa-pencil-square-o"></i>
-            <span class="menu-text"> Forms </span>
+            <span class="menu-text"> Bậc Tncc </span>
 
             <b class="arrow fa fa-angle-down"></b>
         </a>
@@ -389,52 +318,84 @@
 
         <ul class="submenu">
             <li class="">
-                <a href="form-elements.html">
+                <a href="<?php echo Url::toRoute('bac-tccn/index')?>">
                     <i class="menu-icon fa fa-caret-right"></i>
-                    Form Elements
+                   Danh sách
                 </a>
 
                 <b class="arrow"></b>
             </li>
 
             <li class="">
-                <a href="form-elements-2.html">
+                <a href="<?php echo Url::toRoute('bac-tccn/create')?>">
                     <i class="menu-icon fa fa-caret-right"></i>
-                    Form Elements 2
-                </a>
-
-                <b class="arrow"></b>
-            </li>
-
-            <li class="">
-                <a href="form-wizard.html">
-                    <i class="menu-icon fa fa-caret-right"></i>
-                    Wizard &amp; Validation
-                </a>
-
-                <b class="arrow"></b>
-            </li>
-
-            <li class="">
-                <a href="wysiwyg.html">
-                    <i class="menu-icon fa fa-caret-right"></i>
-                    Wysiwyg &amp; Markdown
-                </a>
-
-                <b class="arrow"></b>
-            </li>
-
-            <li class="">
-                <a href="dropzone.html">
-                    <i class="menu-icon fa fa-caret-right"></i>
-                    Dropzone File Upload
+                  Thêm
                 </a>
 
                 <b class="arrow"></b>
             </li>
         </ul>
     </li>
+    <li class="">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-pencil-square-o"></i>
+            <span class="menu-text"> Bảng II </span>
 
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+        <b class="arrow"></b>
+
+        <ul class="submenu">
+            <li class="">
+                <a href="<?php echo Url::toRoute('bang-ii/index')?>">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    Danh sách
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="<?php echo Url::toRoute('bang-ii/create')?>">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    Thêm
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+        </ul>
+    </li>
+    <li class="">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-pencil-square-o"></i>
+            <span class="menu-text"> Bảng III </span>
+
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+        <b class="arrow"></b>
+
+        <ul class="submenu">
+            <li class="">
+                <a href="<?php echo Url::toRoute('bang-iii/index')?>">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    Danh sách
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="<?php echo Url::toRoute('bang-iii/create')?>">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    Thêm
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+        </ul>
+    </li>
     <li class="">
         <a href="widgets.html">
             <i class="menu-icon fa fa-list-alt"></i>

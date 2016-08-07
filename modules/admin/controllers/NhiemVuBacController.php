@@ -2,19 +2,17 @@
 
 namespace app\modules\admin\controllers;
 
-use app\models\PhongKhoa;
-use app\models\To_Bo_Mon;
 use Yii;
-use app\models\teacher;
-use app\modules\admin\modelSeach\TeacherSeach;
+use app\models\NhiemVuBac;
+use app\modules\admin\modelSeach\NhiemVuBacSeach;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TeacherController implements the CRUD actions for teacher model.
+ * NhiemVuBacController implements the CRUD actions for NhiemVuBac model.
  */
-class TeacherController extends Controller
+class NhiemVuBacController extends Controller
 {
     /**
      * @inheritdoc
@@ -32,12 +30,12 @@ class TeacherController extends Controller
     }
 
     /**
-     * Lists all teacher models.
+     * Lists all NhiemVuBac models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TeacherSeach();
+        $searchModel = new NhiemVuBacSeach();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -47,7 +45,7 @@ class TeacherController extends Controller
     }
 
     /**
-     * Displays a single teacher model.
+     * Displays a single NhiemVuBac model.
      * @param integer $id
      * @return mixed
      */
@@ -59,16 +57,16 @@ class TeacherController extends Controller
     }
 
     /**
-     * Creates a new teacher model.
+     * Creates a new NhiemVuBac model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new teacher();
+        $model = new NhiemVuBac();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'id' => $model->id_gv]);
+            return $this->redirect(['index', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -77,7 +75,7 @@ class TeacherController extends Controller
     }
 
     /**
-     * Updates an existing teacher model.
+     * Updates an existing NhiemVuBac model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -87,7 +85,7 @@ class TeacherController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'id' => $model->id_gv]);
+            return $this->redirect(['index', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -96,7 +94,7 @@ class TeacherController extends Controller
     }
 
     /**
-     * Deletes an existing teacher model.
+     * Deletes an existing NhiemVuBac model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -109,31 +107,18 @@ class TeacherController extends Controller
     }
 
     /**
-     * Finds the teacher model based on its primary key value.
+     * Finds the NhiemVuBac model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return teacher the loaded model
+     * @return NhiemVuBac the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = teacher::findOne($id)) !== null) {
+        if (($model = NhiemVuBac::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-    public function actionAjax()
-    {
-        $id1=$_POST['id'];
-        $str='';
-        $value=To_Bo_Mon::find()->where(['id_khoa'=>$id1])->all();
-        if(count($value)>0)
-        {
-            for($i=0;$i<count($value);$i++)
-             $str=$str.'<option value="'.$value[$i]->id_to_bo_mon.'">'.$value[$i]->ten.'</option>';
-        }
-        echo $str;
-
     }
 }
