@@ -39,9 +39,19 @@ class To_Bo_Mon extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_to_bo_mon' => 'Id To Bo Mon',
-            'ten' => 'Ten',
-            'id_khoa' => 'Id Khoa',
+            'id_to_bo_mon' => Yii::t('app','serial'),
+            'ten' => Yii::t('app','name'),
+            'id_khoa' => Yii::t('app','Department'),
         ];
+    }
+    public function getTextPhong($value)
+    {
+        $phongKhoa=PhongKhoa::findOne($value);
+        if(isset($phongKhoa))
+        {
+            return $phongKhoa->ten;
+        }
+        else
+            return "Unknown";
     }
 }

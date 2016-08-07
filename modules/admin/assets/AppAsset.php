@@ -29,7 +29,7 @@ class AppAsset extends AssetBundle
         ];
         $this->js = [
             'js/ace-extra.min.js',
-            'js/jquery.2.1.1.min.js',
+            /*'js/jquery.2.1.1.min.js'*/
             'js/bootstrap.min.js',
             'js/jquery.dataTables.min.js',
             'js/jquery.dataTables.bootstrap.min.js',

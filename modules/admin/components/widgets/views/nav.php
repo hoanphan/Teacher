@@ -1,3 +1,15 @@
+<?php
+
+/* @var $this \yii\web\View */
+/* @var $content string */
+
+use yii\helpers\Html;
+use app\modules\admin\assets\AppAsset;
+use  app\modules\admin\components\widgets\Nav;
+use app\modules\admin\components\widgets\SideBar;
+
+$bunel = AppAsset::register($this);
+?>
 <div class="navbar-header pull-left">
     <a href="index.html" class="navbar-brand">
         <small>
@@ -170,7 +182,7 @@
                     <ul class="dropdown-menu dropdown-navbar">
                         <li>
                             <a href="#" class="clearfix">
-                                <img src="assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+                                <img src="<?php echo $bunel->baseUrl?>/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
                                 <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Alex:</span>
@@ -187,7 +199,7 @@
 
                         <li>
                             <a href="#" class="clearfix">
-                                <img src="assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+                                <img src="<?php echo $bunel->baseUrl?>/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
                                 <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Susan:</span>
@@ -204,7 +216,7 @@
 
                         <li>
                             <a href="#" class="clearfix">
-                                <img src="assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+                                <img src="<?php echo $bunel->baseUrl?>/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
                                 <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Bob:</span>
@@ -221,7 +233,7 @@
 
                         <li>
                             <a href="#" class="clearfix">
-                                <img src="assets/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
+                                <img src="<?php echo $bunel->baseUrl?>/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
                                 <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Kate:</span>
@@ -238,7 +250,7 @@
 
                         <li>
                             <a href="#" class="clearfix">
-                                <img src="assets/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
+                                <img src="<?php echo $bunel->baseUrl?>/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
                                 <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Fred:</span>
@@ -266,7 +278,7 @@
 
         <li class="light-blue">
             <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                <img class="nav-user-photo" src="assets/avatars/user.jpg" alt="Jason's Photo" />
+                <img class="nav-user-photo" src="<?php echo $bunel->baseUrl?>/avatars/user.jpg" alt="Jason's Photo" />
                 <span class="user-info">
 									<small>Welcome,</small>
 									Jason

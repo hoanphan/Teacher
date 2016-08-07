@@ -1,3 +1,7 @@
+<?php
+    use \yii\helpers\Url;
+?>
+
 <div class="sidebar-shortcuts" id="sidebar-shortcuts">
     <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
         <button class="btn btn-success">
@@ -32,7 +36,7 @@
     <li class="">
         <a href="index.html">
             <i class="menu-icon fa fa-tachometer"></i>
-            <span class="menu-text"> Dashboard </span>
+            <span class="menu-text"> Bảng điều khiển </span>
         </a>
 
         <b class="arrow"></b>
@@ -42,7 +46,7 @@
         <a href="#" class="dropdown-toggle">
             <i class="menu-icon fa fa-desktop"></i>
             <span class="menu-text">
-								UI &amp; Elements
+								Thông tin
 							</span>
 
             <b class="arrow fa fa-angle-down"></b>
@@ -55,7 +59,7 @@
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-caret-right"></i>
 
-                    Layouts
+                   Bậc
                     <b class="arrow fa fa-angle-down"></b>
                 </a>
 
@@ -63,54 +67,48 @@
 
                 <ul class="submenu">
                     <li class="">
-                        <a href="top-menu.html">
+                        <a href="<?=Url::toRoute("bac/index")?>">
                             <i class="menu-icon fa fa-caret-right"></i>
-                            Top Menu
+                            Danh sách bậc
                         </a>
 
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="">
+                    <li class="<?=Url::toRoute('bac/create')?>">
                         <a href="two-menu-1.html">
                             <i class="menu-icon fa fa-caret-right"></i>
-                            Two Menus 1
+                            Thêm mới bặc
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+            <li class="">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-caret-right"></i>
+
+                    Ngạch
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+
+                <b class="arrow"></b>
+
+                <ul class="submenu">
+                    <li class="">
+                        <a href="<?=Url::toRoute("ngach/index")?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Danh sách
                         </a>
 
                         <b class="arrow"></b>
                     </li>
 
                     <li class="">
-                        <a href="two-menu-2.html">
+                        <a href="<?=Url::toRoute('ngach/create')?>">
                             <i class="menu-icon fa fa-caret-right"></i>
-                            Two Menus 2
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="mobile-menu-1.html">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Default Mobile Menu
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="mobile-menu-2.html">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Mobile Menu 2
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
-                    <li class="">
-                        <a href="mobile-menu-3.html">
-                            <i class="menu-icon fa fa-caret-right"></i>
-                            Mobile Menu 3
+                            Thêm mới
                         </a>
 
                         <b class="arrow"></b>
@@ -119,13 +117,126 @@
             </li>
 
             <li class="">
-                <a href="typography.html">
+                <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-caret-right"></i>
-                    Typography
+
+                    Phòng ban - khoa
+                    <b class="arrow fa fa-angle-down"></b>
                 </a>
 
                 <b class="arrow"></b>
+
+                <ul class="submenu">
+                    <li class="">
+                        <a href="<?=Url::toRoute("phong-khoa/index")?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Danh sách
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="">
+                        <a href="<?=Url::toRoute('phong-khoa/create')?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Thêm mới
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
             </li>
+            <li class="">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-caret-right"></i>
+
+                    Tổ bộ môn
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+
+                <b class="arrow"></b>
+
+                <ul class="submenu">
+                    <li class="">
+                        <a href="<?=Url::toRoute("to-bo-mon/index")?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                          Danh sách
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="">
+                        <a href="<?=Url::toRoute('to-bo-mon/create')?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Thêm mới
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+            <li class="">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-caret-right"></i>
+
+                    Lớp
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+
+                <b class="arrow"></b>
+
+                <ul class="submenu">
+                    <li class="">
+                        <a href="<?=Url::toRoute("lop/index")?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Danh sách
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="">
+                        <a href="<?=Url::toRoute('lop/create')?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Thêm mới
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+            <li class="">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-caret-right"></i>
+
+                    Giáo viên
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+
+                <b class="arrow"></b>
+
+                <ul class="submenu">
+                    <li class="">
+                        <a href="<?=Url::toRoute("teacher/index")?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Danh sách
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="">
+                        <a href="<?=Url::toRoute('teacher/create')?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Thêm mới
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+
 
             <li class="">
                 <a href="elements.html">
@@ -135,7 +246,6 @@
 
                 <b class="arrow"></b>
             </li>
-
             <li class="">
                 <a href="buttons.html">
                     <i class="menu-icon fa fa-caret-right"></i>

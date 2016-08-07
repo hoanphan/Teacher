@@ -28,7 +28,8 @@ class Bac extends \yii\db\ActiveRecord
     {
         return [
             [['ten'], 'required'],
-            [['ten', 'status'], 'integer'],
+            [['ten'], 'string', 'max' => 255],
+            [[ 'status'], 'integer'],
         ];
     }
 
@@ -38,9 +39,24 @@ class Bac extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'ten' => 'Ten',
-            'status' => 'Status',
+            'id' => Yii::t('app','serial'),
+            'ten' => Yii::t('app','Name'),
+            'status' => Yii::t('app','Status'),
         ];
+    }
+    public function getStatusText($value)
+    {
+        $statusArr=array(0=>'InActive',1=>'Active');
+        if(isset($statusArr[$value]))
+        {
+            return $statusArr[$value];
+        }
+        else
+            return "Unknown";
+    }
+    public function getListStatus()
+    {
+        $statusArr=array(0=>'InActive',1=>'Active');
+        return $statusArr;
     }
 }
