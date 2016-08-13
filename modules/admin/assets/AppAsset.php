@@ -22,14 +22,13 @@ class AppAsset extends AssetBundle
         parent::init();
         $this->sourcePath = "@app/modules/admin/web";
         $this->css = [
-           'css/bootstrap.min.css',
+
             'font-awesome/4.2.0/css/font-awesome.min.css',
             'fonts/fonts.googleapis.com.css',
             'css/ace.min.css'
         ];
         $this->js = [
             'js/ace-extra.min.js',
-            'js/bootstrap.min.js',
             'js/jquery.dataTables.min.js',
             'js/jquery.dataTables.bootstrap.min.js',
             'js/dataTables.tableTools.min.js',
@@ -41,6 +40,7 @@ class AppAsset extends AssetBundle
         $this->depends = [
             'yii\web\YiiAsset',
             'yii\bootstrap\BootstrapAsset',
+            'yii\bootstrap\BootstrapPluginAsset'
         ];
         $this->jsOptions['position']=View::POS_END;
 

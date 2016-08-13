@@ -115,16 +115,7 @@ $bunel = AppAsset::register($this);
                                     <div class="dropdown dropdown-colorpicker"><a data-toggle="dropdown"
                                                                                   class="dropdown-toggle" href="#"><span
                                                 class="btn-colorpicker" style="background-color:#438EB9"></span></a>
-                                        <ul class="dropdown-menu dropdown-caret">
-                                            <li><a class="colorpick-btn selected" href="#"
-                                                   style="background-color:#438EB9;" data-color="#438EB9"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#222A2D;"
-                                                   data-color="#222A2D"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#C6487E;"
-                                                   data-color="#C6487E"></a></li>
-                                            <li><a class="colorpick-btn" href="#" style="background-color:#D0D0D0;"
-                                                   data-color="#D0D0D0"></a></li>
-                                        </ul>
+
                                     </div>
                                 </div>
                                 <span>&nbsp; Choose Skin</span>
@@ -188,24 +179,12 @@ $bunel = AppAsset::register($this);
         <div class="footer-inner">
             <div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">Ace</span>
-							Application &copy; 2013-2014
+							<span class="blue bolder">Teacher</span>
+							Application &copy; 2016-2017
 						</span>
 
-                &nbsp; &nbsp;
-                <span class="action-buttons">
-							<a href="#">
-								<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-							</a>
+                &nbsp; &nb
 
-							<a href="#">
-								<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
-							</a>
-
-							<a href="#">
-								<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
-							</a>
-						</span>
             </div>
         </div>
     </div>
@@ -251,27 +230,7 @@ $bunel = AppAsset::register($this);
         var oTable1 =
             $('#dynamic-table')
             //.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-                .dataTable({
-                    bAutoWidth: false,
-                    "aoColumns": [
-                        {"bSortable": false},
-                        null, null, null, null, null,
-                        {"bSortable": false}
-                    ],
-                    "aaSorting": [],
 
-                    //,
-                    //"sScrollY": "200px",
-                    //"bPaginate": false,
-
-                    //"sScrollX": "100%",
-                    //"sScrollXInner": "120%",
-                    //"bScrollCollapse": true,
-                    //Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-                    //you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-                    //"iDisplayLength": 50
-                });
         //oTable1.fnAdjustColumnSizing();
 
 
@@ -284,114 +243,9 @@ $bunel = AppAsset::register($this);
         }
 
         //initiate TableTools extension
-        var tableTools_obj = new $.fn.dataTable.TableTools(oTable1, {
-            "sSwfPath": "assets/swf/copy_csv_xls_pdf.swf",
 
-            "sRowSelector": "td:not(:last-child)",
-            "sRowSelect": "multi",
-            "fnRowSelected": function (row) {
-                //check checkbox when row is selected
-                try {
-                    $(row).find('input[type=checkbox]').get(0).checked = true
-                }
-                catch (e) {
-                }
-            },
-            "fnRowDeselected": function (row) {
-                //uncheck checkbox
-                try {
-                    $(row).find('input[type=checkbox]').get(0).checked = false
-                }
-                catch (e) {
-                }
-            },
-
-            "sSelectedClass": "success",
-            "aButtons": [
-                {
-                    "sExtends": "copy",
-                    "sToolTip": "Copy to clipboard",
-                    "sButtonClass": "btn btn-white btn-primary btn-bold",
-                    "sButtonText": "<i class='fa fa-copy bigger-110 pink'></i>",
-                    "fnComplete": function () {
-                        this.fnInfo('<h3 class="no-margin-top smaller">Table copied</h3>\
-									<p>Copied ' + (oTable1.fnSettings().fnRecordsTotal()) + ' row(s) to the clipboard.</p>',
-                            1500
-                        );
-                    }
-                },
-
-                {
-                    "sExtends": "csv",
-                    "sToolTip": "Export to CSV",
-                    "sButtonClass": "btn btn-white btn-primary  btn-bold",
-                    "sButtonText": "<i class='fa fa-file-excel-o bigger-110 green'></i>"
-                },
-
-                {
-                    "sExtends": "pdf",
-                    "sToolTip": "Export to PDF",
-                    "sButtonClass": "btn btn-white btn-primary  btn-bold",
-                    "sButtonText": "<i class='fa fa-file-pdf-o bigger-110 red'></i>"
-                },
-
-                {
-                    "sExtends": "print",
-                    "sToolTip": "Print view",
-                    "sButtonClass": "btn btn-white btn-primary  btn-bold",
-                    "sButtonText": "<i class='fa fa-print bigger-110 grey'></i>",
-
-                    "sMessage": "<div class='navbar navbar-default'><div class='navbar-header pull-left'><a class='navbar-brand' href='#'><small>Optional Navbar &amp; Text</small></a></div></div>",
-
-                    "sInfo": "<h3 class='no-margin-top'>Print view</h3>\
-									  <p>Please use your browser's print function to\
-									  print this table.\
-									  <br />Press <b>escape</b> when finished.</p>",
-                }
-            ]
-        });
-        //we put a container before our table and append TableTools element to it
-        $(tableTools_obj.fnContainer()).appendTo($('.tableTools-container'));
-
-        //also add tooltips to table tools buttons
-        //addding tooltips directly to "A" buttons results in buttons disappearing (weired! don't know why!)
-        //so we add tooltips to the "DIV" child after it becomes inserted
-        //flash objects inside table tools buttons are inserted with some delay (100ms) (for some reason)
-        setTimeout(function () {
-            $(tableTools_obj.fnContainer()).find('a.DTTT_button').each(function () {
-                var div = $(this).find('> div');
-                if (div.length > 0) div.tooltip({container: 'body'});
-                else $(this).tooltip({container: 'body'});
-            });
-        }, 200);
-
-
-        //ColVis extension
-        var colvis = new $.fn.dataTable.ColVis(oTable1, {
-            "buttonText": "<i class='fa fa-search'></i>",
-            "aiExclude": [0, 6],
-            "bShowAll": true,
-            //"bRestore": true,
-            "sAlign": "right",
-            "fnLabel": function (i, title, th) {
-                return $(th).text();//remove icons, etc
-            }
-
-        });
 
         //style it
-        $(colvis.button()).addClass('btn-group').find('button').addClass('btn btn-white btn-info btn-bold')
-
-        //and append it to our table tools btn-group, also add tooltip
-        $(colvis.button())
-            .prependTo('.tableTools-container .btn-group')
-            .attr('title', 'Show/hide columns').tooltip({container: 'body'});
-
-        //and make the list, buttons and checkboxed Ace-like
-        $(colvis.dom.collection)
-            .addClass('dropdown-menu dropdown-light dropdown-caret dropdown-caret-right')
-            .find('li').wrapInner('<a href="javascript:void(0)" />') //'A' tag is required for better styling
-            .find('input[type=checkbox]').addClass('ace').next().addClass('lbl padding-8');
 
 
         /////////////////////////////////
@@ -447,7 +301,7 @@ $bunel = AppAsset::register($this);
 
         /********************************/
         //add tooltip for small view action buttons in dropdown menu
-        $('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+     
 
         //tooltip placement on right or left
         function tooltip_placement(context, source) {

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Teacher;
+use app\models\BangIii;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\BangIii */
@@ -18,14 +19,14 @@ use app\models\Teacher;
 
     <?= $form->field($model, 'ten')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'nhiem_thu')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'nhiem_thu')->textInput() ?>
 
-    <?= $form->field($model, 'so_gio_chuan')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'so_gio_chuan')->textInput() ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList(BangIii::getListStatus()) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Tạo' : 'Cập nhật', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

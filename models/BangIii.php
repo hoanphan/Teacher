@@ -63,4 +63,19 @@ class BangIii extends \yii\db\ActiveRecord
         else
             return "Unknown";
     }
+    public function getListStatus()
+    {
+        $arr=array(0=>'Inactive',1=>'Active');
+        return $arr;
+    }
+    public function getNameTeacher($key)
+    {
+        $teacher=Teacher::findOne($key);
+        if(isset($teacher))
+        {
+            return $teacher->ho_ten;
+        }
+        else
+            return "Unknown";
+    }
 }

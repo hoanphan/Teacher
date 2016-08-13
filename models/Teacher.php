@@ -31,7 +31,7 @@ class Teacher extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ho_ten', 'id_to_bo_mon', 'id_Khoa', 'dinh_muc', 'he_so_luong', 'id_ngach'], 'required'],
+            [['id_to_bo_mon', 'id_Khoa', 'dinh_muc', 'he_so_luong', 'id_ngach'], 'required'],
             [['id_to_bo_mon', 'id_Khoa', 'dinh_muc', 'id_ngach'], 'integer'],
             [['he_so_luong'], 'number'],
             [['ho_ten'], 'string', 'max' => 255],
@@ -62,6 +62,16 @@ class Teacher extends \yii\db\ActiveRecord
         }
         else
             return "unknown";
+    }
+    public static function  getTo($id)
+    {
+        $to=To_Bo_Mon::findOne($id);
+        if (isset($to))
+        {
+           return $to->ten;
+        }
+        else
+            return 'Unknown';
     }
     public function LayPhongBan($key)
     {

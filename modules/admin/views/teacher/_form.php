@@ -29,7 +29,7 @@ $bunel = AppAsset::register($this);
     <?= $form->field($model, 'id_ngach')->dropDownList(ArrayHelper::map(Ngach::find()->asArray()->all(),'id_ngach','ten_ngach')) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Tạo' : 'Cập nhật', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

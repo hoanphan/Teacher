@@ -3,16 +3,16 @@
 namespace app\modules\admin\controllers;
 
 use Yii;
-use app\models\BangIii;
-use app\modules\admin\modelSeach\BangIiiSeach;
+use app\models\BangV;
+use app\modules\admin\modelSeach\BangVSeach;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * BangIiiController implements the CRUD actions for BangIii model.
+ * BangVController implements the CRUD actions for BangV model.
  */
-class BangIiiController extends Controller
+class BangVController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class BangIiiController extends Controller
     }
 
     /**
-     * Lists all BangIii models.
+     * Lists all BangV models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new BangIiiSeach();
+        $searchModel = new BangVSeach();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class BangIiiController extends Controller
     }
 
     /**
-     * Displays a single BangIii model.
+     * Displays a single BangV model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class BangIiiController extends Controller
     }
 
     /**
-     * Creates a new BangIii model.
+     * Creates a new BangV model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new BangIii();
+        $model = new BangV();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class BangIiiController extends Controller
     }
 
     /**
-     * Updates an existing BangIii model.
+     * Updates an existing BangV model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class BangIiiController extends Controller
     }
 
     /**
-     * Deletes an existing BangIii model.
+     * Deletes an existing BangV model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class BangIiiController extends Controller
     }
 
     /**
-     * Finds the BangIii model based on its primary key value.
+     * Finds the BangV model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return BangIii the loaded model
+     * @return BangV the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = BangIii::findOne($id)) !== null) {
+        if (($model = BangV::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

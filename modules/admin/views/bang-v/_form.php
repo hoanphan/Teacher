@@ -6,11 +6,11 @@ use yii\helpers\ArrayHelper;
 use app\models\Teacher;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\BangIi */
+/* @var $model app\models\BangV */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="bang-ii-form">
+<div class="bang-v-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -18,11 +18,11 @@ use app\models\Teacher;
 
     <?= $form->field($model, 'noi_dung')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'thoi_gian_th')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'thoi_gian_thuc_hien')->textInput() ?>
+
     <?= $form->field($model, 'so_gio_chuan')->textInput() ?>
-    <?= $form->field($model, 'status')->dropDownList(array(1=>'Active',0=>'Inactive')) ?>
 
-
+    <?= $form->field($model, 'status')->dropDownList(array(0=>'Inactive',1=>'Active')) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Tạo' : 'Cập nhật', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

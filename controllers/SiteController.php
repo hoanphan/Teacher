@@ -2,12 +2,17 @@
 
 namespace app\controllers;
 
+use app\models\Teacher;
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\PhongKhoa;
+use app\models\To_Bo_Mon;
+
 
 class SiteController extends Controller
 {
@@ -40,27 +45,18 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
-        ];
-    }
+
 
     /**
      * Displays homepage.
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($id)
     {
-        return $this->render('index');
+
+        $teacher=Teacher::findOne($id);
+        return $this->render('index',array('teacher'=>$teacher));
     }
 
     /**
@@ -68,58 +64,66 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionLogin()
+    public function actionSearch()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-        return $this->render('login', [
-            'model' => $model,
-        ]);
+        $teacher=new Teacher();
+        return $this->render('search',array('teacher'=>$teacher));
     }
-
-    /**
-     * Logout action.
-     *
-     * @return string
-     */
-    public function actionLogout()
+    public function actionAjax()
     {
-        Yii::$app->user->logout();
+        if (isset($_POST['Teacher'])) {
+            $str = '
+                <table class="table">
+                    <thead style="font-weight: bold">
+                        <tr>
+                            <td>
+                                Số thứ tự
+                            </td>
+                            <td>
+                                Họ và tên
+                            </td>
+                            <td>
+                                Phòng Khoa
+                            </td>
+                            <td>
+                                Tổ
+                            </td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>';
 
-        return $this->goHome();
-    }
 
-    /**
-     * Displays contact page.
-     *
-     * @return string
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
+            $value =$_POST['Teacher']['ho_ten'] ;
+            $datas = Teacher::find()->andFilterWhere(['like', 'ho_ten', $value])->all();
+            if (count($datas) > 0) {
+                for ($i = 0; $i < count($datas); $i++) {
+                    $str .= '<tr>
+                            <td>
+                                ' . ($i + 1) . '
+                            </td>
+                            <td>
+                                ' . $datas[$i]->ho_ten . '
+                            </td>
+                            <td>
+                                ' . Teacher::getTo($datas[$i]->id_Khoa) . '
+                            </td>
+                            <td>
+                                ' . Teacher::getTo($datas[$i]->id_to_bo_mon) . '
+                            </td>
+                            <td>
+                                <a href="' . Url::toRoute(['index', 'id' => $datas[$i]->id_gv]) . '">Xem chi tiết</a>
+                            </td>
+                         </tr>';
+                }
+            } else
+                $str = 'none';
+            if ($str != 'none')
+                $str .= '</tbody>
+                </table>
+            ';
+            echo $str;
         }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
     }
 }

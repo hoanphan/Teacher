@@ -19,7 +19,7 @@ use app\models\PhongKhoa;
     <?= $form->field($model, 'id_khoa')->dropDownList(ArrayHelper::map(PhongKhoa::find()->asArray()->all(),'id_khoa','ten')) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Tạo' : 'Cập nhật', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
