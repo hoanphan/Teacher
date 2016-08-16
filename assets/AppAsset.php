@@ -15,15 +15,21 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
-    public $css = [
+    public function init()
+    {
+
+        $this->sourcePath = "@app/web";
+        $this-> css = [
         'css/site.css',
     ];
-    public $js = [
+        $this->  js = [
     ];
-    public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        $this->  depends = [
+            'yii\web\YiiAsset',
+            'yii\bootstrap\BootstrapAsset',
+            'yii\bootstrap\BootstrapPluginAsset'
     ];
+    }
+
+
 }

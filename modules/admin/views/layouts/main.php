@@ -183,8 +183,6 @@ $bunel = AppAsset::register($this);
 							Application &copy; 2016-2017
 						</span>
 
-                &nbsp; &nb
-
             </div>
         </div>
     </div>

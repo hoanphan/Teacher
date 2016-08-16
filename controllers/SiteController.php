@@ -52,10 +52,10 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex($id)
+    public function actionIndex()
     {
 
-        $teacher=Teacher::findOne($id);
+        $teacher=new Teacher();
         return $this->render('index',array('teacher'=>$teacher));
     }
 
@@ -64,10 +64,10 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionSearch()
+    public function actionSearch($id)
     {
+        $teacher=Teacher::findOne($id);
 
-        $teacher=new Teacher();
         return $this->render('search',array('teacher'=>$teacher));
     }
     public function actionAjax()
@@ -113,7 +113,7 @@ class SiteController extends Controller
                                 ' . Teacher::getTo($datas[$i]->id_to_bo_mon) . '
                             </td>
                             <td>
-                                <a href="' . Url::toRoute(['index', 'id' => $datas[$i]->id_gv]) . '">Xem chi tiết</a>
+                                <a href="' . Url::toRoute(['search', 'id' => $datas[$i]->id_gv]) . '">Xem chi tiết</a>
                             </td>
                          </tr>';
                 }
