@@ -2,6 +2,11 @@
 
 namespace app\modules\admin\controllers;
 
+
+use app\models\User;
+use app\modules\admin\components\LoginForm;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 
 /**
@@ -9,12 +14,41 @@ use yii\web\Controller;
  */
 class DefaultController extends Controller
 {
-    /**
-     * Renders the index view for the module
-     * @return string
-     */
+
     public function actionIndex()
     {
         return $this->render('index');
     }
+
+    /**
+     * @return string|void
+     */
+    public function actionLogin()
+    {
+
+
+        $this->layout='login';
+
+        if(!\Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        $model = new LoginForm();
+        if($model->load(\Yii::$app->request->post()) && $model->login()) {
+            if (User::findOne(\Yii::$app->user->id)->rule==0)
+            return $this->redirect('index');
+            else
+                return $this->goHome();
+        }
+        return $this->render('login', [
+            'model' => $model,
+        ]);
+
+    }
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
+    }
+
 }

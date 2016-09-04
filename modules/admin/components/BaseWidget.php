@@ -56,6 +56,9 @@ namespace app\modules\admin\components;
                 case 'mon-hoc':
                     return 'active open';
                     break;
+                case'ten-dinh-muc':
+                    return 'active open';
+                    break;
                 default :
                     return '';
                     break;

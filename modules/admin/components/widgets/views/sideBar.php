@@ -239,7 +239,35 @@
                     </li>
                 </ul>
             </li>
+            <li class="<?=BaseWidget::isActive("ten-dinh-muc")?>">
+                <a href="#" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    Tên định mức
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
 
+                <b class="arrow"></b>
+
+                <ul class="submenu">
+                    <li class="<?=BaseWidget::isActive("ten-dinh-muc",'index')?>">
+                        <a href="<?=Url::toRoute("ten-dinh-muc/index")?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Danh sách
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="<?=BaseWidget::isActive("ten-dinh-muc",'create')?>">
+                        <a href="<?=Url::toRoute('ten-dinh-muc/create')?>">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Thêm mới
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
 
         </ul>
     </li>
@@ -399,24 +427,37 @@
             </li>
         </ul>
     </li>
-    <li class="">
-        <a href="widgets.html">
-            <i class="menu-icon fa fa-list-alt"></i>
-            <span class="menu-text">User</span>
+    <li class="<?=BaseWidget::isActive('user')?>">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon fa fa-pencil-square-o"></i>
+            <span class="menu-text"> User</span>
+
+            <b class="arrow fa fa-angle-down"></b>
         </a>
 
-
         <b class="arrow"></b>
-    </li>
-    <li class="">
-        <a href="widgets.html">
-            <i class="menu-icon fa fa-list-alt"></i>
-            <span class="menu-text">Phân quyền</span>
-        </a>
 
+        <ul class="submenu">
+            <li class="<?=BaseWidget::isActive('user','index')?>">
+                <a href="<?php echo Url::toRoute('user/index')?>">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    Danh sách
+                </a>
 
-        <b class="arrow"></b>
+                <b class="arrow"></b>
+            </li>
+
+            <li class="<?=BaseWidget::isActive('user')?>">
+                <a href="<?php echo Url::toRoute('user/create')?>">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    Thêm
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+        </ul>
     </li>
+
 
 </ul><!-- /.nav-list -->
 

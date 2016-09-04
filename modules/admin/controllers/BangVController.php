@@ -8,7 +8,7 @@ use app\modules\admin\modelSeach\BangVSeach;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\filters\AccessControl;
 /**
  * BangVController implements the CRUD actions for BangV model.
  */
@@ -26,9 +26,18 @@ class BangVController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index', 'create', 'view', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
         ];
     }
-
     /**
      * Lists all BangV models.
      * @return mixed

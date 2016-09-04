@@ -2,6 +2,9 @@
 
 namespace app\modules\admin;
 
+use app\models\User;
+
+
 /**
  * admin module definition class
  */
@@ -11,7 +14,7 @@ class Admin extends \yii\base\Module
      * @inheritdoc
      */
     public $layout='main';
-    public  $defaultRoute='default/index';
+    public  $defaultRoute='default/login';
     public $controllerNamespace = 'app\modules\admin\controllers';
 
     /**
@@ -20,7 +23,13 @@ class Admin extends \yii\base\Module
     public function init()
     {
         parent::init();
-
-        // custom initialization code goes here
+        \Yii::$app->setComponents([
+            'user' => [
+                'class' =>\yii\web\User::className(),
+                'identityClass' => 'app\models\User',
+                'enableAutoLogin' => true,
+                'loginUrl' => ['admin/default/login'],
+            ]
+        ]);
     }
 }

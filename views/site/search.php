@@ -22,6 +22,7 @@ $bangX=\app\models\Bangx::findAll(['status'=>1]);
 $tong1 = 0;
 $tong2 = 0;
 $congbac = 0;
+$bac1=0;
 $tongII=0;
 $tongIII=0;
 $tongIV=0;
@@ -108,7 +109,7 @@ $i = 0;
                 <td>9=7*8</td>
                 <td>10</td>
             </tr>
-            <?php $congbac = 0; ?>
+            <?php $congbac=0?>
             <?php $stt = 1; ?>
             <?php foreach ($nhiemVuBacs as $nhiemVuBac): ?>
                 <?php $lop = \app\models\Lop::findOne($nhiemVuBac->id_lop);
@@ -242,7 +243,10 @@ $i = 0;
             <tr style="height: 30px">
                 <td></td>
                 <td colspan="13">Tổng</td>
-                <td><?= round($congbac * $ngach->quy_chuan, 1) ?></td>
+                <td><?php
+                           $congbac= round($congbac * $ngach->quy_chuan, 1);
+                    $bac1+=$congbac;
+                    echo $congbac;?></td>
                 <td></td>
 
             </tr>
@@ -495,4 +499,15 @@ $i = 0;
         </tbody>
     </table>
 
+</div>
+<div>
+    <label>VI. Tổng số giờ (tiết chuẩn) đề nghị được thanh toán:</label>
+    <div class="col-xs-12">
+        <div class="col-xs-4">
+            VI = I + II + III + IV +V - (1)=
+        </div>
+        <div class="col-xs-4">
+           <?=$bac1+$tongII+$tongIII+$tongV+$tongV-$teacher->dinh_muc?> giờ
+        </div>
+    </div>
 </div>

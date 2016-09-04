@@ -38,7 +38,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/admin/default/index']]
+                ['label' => 'Login', 'url' => ['/admin/default/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])

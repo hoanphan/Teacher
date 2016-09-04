@@ -29,7 +29,7 @@ $bunel = AppAsset::register($this);
                 <img class="nav-user-photo" src="<?php echo $bunel->baseUrl?>/avatars/user.jpg" alt="Jason's Photo" />
                 <span class="user-info">
 									<small>Welcome,</small>
-									Admin
+                                    <?= \app\models\User::getName(Yii::$app->user->getId())?>
 								</span>
 
                 <i class="ace-icon fa fa-caret-down"></i>
@@ -47,7 +47,7 @@ $bunel = AppAsset::register($this);
                 <li class="divider"></li>
 
                 <li>
-                    <a href="#">
+                    <a href="<?=Url::toRoute(['/site/out'])?>">
                         <i class="ace-icon fa fa-power-off"></i>
                         Đăng xuất
                     </a>

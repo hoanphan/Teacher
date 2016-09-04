@@ -8,7 +8,7 @@ use app\modules\admin\modelSeach\NhiemVuBacSeach;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\filters\AccessControl;
 /**
  * NhiemVuBacController implements the CRUD actions for NhiemVuBac model.
  */
@@ -26,9 +26,18 @@ class NhiemVuBacController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index', 'create', 'view', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
         ];
     }
-
     /**
      * Lists all NhiemVuBac models.
      * @return mixed

@@ -126,4 +126,16 @@ class SiteController extends Controller
             echo $str;
         }
     }
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
+    }
+    public function actionOut()
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
+    }
 }
