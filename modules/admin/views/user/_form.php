@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
-
+    <?= $form->field($model, 'authkey')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Teacher::find()->asArray()->all(),'id_gv','ho_ten')) ?>
     <?= $form->field($model, 'rule')->dropDownList([1=>'write',0=>'admin']) ?>
 
     <div class="form-group">

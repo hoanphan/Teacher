@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\modelSeach;
 
+use app\models\User;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -41,8 +42,10 @@ class NhiemVuBacSeach extends NhiemVuBac
      */
     public function search($params)
     {
-        $query = NhiemVuBac::find();
-
+        if(User::isAdmin())
+             $query = NhiemVuBac::find();
+        else
+            $query= NhiemVuBac::find()->where(['id_gv'=>User::getTecher()]);
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\User;
 use Yii;
 use app\models\NhiemVuBac;
 use app\modules\admin\modelSeach\NhiemVuBacSeach;
@@ -73,10 +74,18 @@ class NhiemVuBacController extends Controller
     public function actionCreate()
     {
         $model = new NhiemVuBac();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if($model->load(Yii::$app->request->post()))
+        {
+            if(User::isAdmin())
+                $model->id_gv=User::getTecher();
+            if($model->save()) {
             return $this->redirect(['index', 'id' => $model->id]);
-        } else {
+            }
+            else
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+        }else {
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -93,10 +102,19 @@ class NhiemVuBacController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
+        if($model->load(Yii::$app->request->post()))
+        {
+            if(User::isAdmin())
+                $model->id_gv=User::getTecher();
+            if($model->save()) {
+                return $this->redirect(['index', 'id' => $model->id]);
+            }
+            else
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+        }else {
+            return $this->render('create', [
                 'model' => $model,
             ]);
         }

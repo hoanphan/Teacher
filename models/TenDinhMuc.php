@@ -44,4 +44,20 @@ class TenDinhMuc extends \yii\db\ActiveRecord
             'bang_duoc_dinh_muc'=>'Bảng được định mức'
         ];
     }
+    public function getTextNorm($value)
+    {
+        $arr=array(1=>'Bảng I',2=>'Bảng II',3=>'Bảng III',4=>'Bảng IV',5=>'Bảng V');
+
+        if(isset($arr[$value]))
+        {
+            return $arr[$value];
+        }
+        else
+            return 'Unknown';
+    }
+    public static function getIdFollowName($name)
+    {
+        return TenDinhMuc::findOne(['bang_duoc_dinh_muc'=>$name])->id;
+    }
+
 }

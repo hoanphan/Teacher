@@ -1,6 +1,7 @@
 <?php
     use \yii\helpers\Url;
     use app\modules\admin\components\BaseWidget;
+    use app\models\User;
 ?>
 
 
@@ -51,7 +52,7 @@
                     <li class="<?=BaseWidget::isActive('bac','create')?>">
                         <a href="<?=Url::toRoute('bac/create')?>">
                             <i class="menu-icon fa fa-caret-right"></i>
-                            Thêm mới bặc
+                            Thêm mới bậc
                         </a>
 
                         <b class="arrow"></b>
@@ -179,6 +180,7 @@
                     </li>
                 </ul>
             </li>
+            <?php if(User::isAdmin()):?>
             <li class="<?=BaseWidget::isActive("teacher")?>">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-caret-right"></i>
@@ -209,6 +211,7 @@
                     </li>
                 </ul>
             </li>
+            <?php endif?>
             <li class="<?=BaseWidget::isActive("mon-hoc")?>">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-caret-right"></i>
@@ -272,7 +275,36 @@
         </ul>
     </li>
 
+    <li class="<?=BaseWidget::isActive('dinh-muc-cua-giao-vien')?>">
+        <a href="#" class="dropdown-toggle">
+            <i class="menu-icon  glyphicon glyphicon-qrcode"></i>
+            <span class="menu-text">Định mức giáo viên</span>
 
+            <b class="arrow fa fa-angle-down"></b>
+        </a>
+
+        <b class="arrow"></b>
+
+        <ul class="submenu">
+            <li class="<?=BaseWidget::isActive('dinh-muc-cua-giao-vien','index')?>">
+                <a href="<?=Url::toRoute("dinh-muc-cua-giao-vien/index")?>">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    Danh sách
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <li class="">
+                <a href="<?=Url::toRoute("dinh-muc-cua-giao-vien/create")?>">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    Thêm
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+        </ul>
+    </li>
 
 
 
@@ -310,7 +342,7 @@
     <li class="<?=BaseWidget::isActive('bac-tccn')?>">
         <a href="#" class="dropdown-toggle">
             <i class="menu-icon fa fa-pencil-square-o"></i>
-            <span class="menu-text"> Bậc Tncc </span>
+            <span class="menu-text"> Bậc TCCN </span>
 
             <b class="arrow fa fa-angle-down"></b>
         </a>
@@ -427,9 +459,10 @@
             </li>
         </ul>
     </li>
+    <?php if (User::findOne(\Yii::$app->user->id)->rule==0):?>
     <li class="<?=BaseWidget::isActive('user')?>">
         <a href="#" class="dropdown-toggle">
-            <i class="menu-icon fa fa-pencil-square-o"></i>
+            <i class="menu-icon fa fa-users"></i>
             <span class="menu-text"> User</span>
 
             <b class="arrow fa fa-angle-down"></b>
@@ -457,6 +490,7 @@
             </li>
         </ul>
     </li>
+    <?php endif;?>
 
 
 </ul><!-- /.nav-list -->

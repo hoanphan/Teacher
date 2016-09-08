@@ -34,10 +34,9 @@ class DefaultController extends Controller
         }
         $model = new LoginForm();
         if($model->load(\Yii::$app->request->post()) && $model->login()) {
-            if (User::findOne(\Yii::$app->user->id)->rule==0)
+
             return $this->redirect('index');
-            else
-                return $this->goHome();
+
         }
         return $this->render('login', [
             'model' => $model,

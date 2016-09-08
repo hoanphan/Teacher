@@ -1,12 +1,14 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\PhongKhoa;
 use app\models\To_Bo_Mon;
 use app\models\Ngach;
 use app\modules\admin\assets\AppAsset;
+use kartik\depdrop\DepDrop;
 /* @var $this yii\web\View */
 /* @var $model app\models\teacher */
 /* @var $form yii\widgets\ActiveForm */
@@ -20,7 +22,13 @@ $bunel = AppAsset::register($this);
     <?= $form->field($model, 'ho_ten')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'id_Khoa')->dropDownList(ArrayHelper::map(PhongKhoa::find()->asArray()->all(),'id_khoa','ten')) ?>
-    <?= $form->field($model, 'id_to_bo_mon')->dropDownList(ArrayHelper::map(To_Bo_Mon::find()->asArray()->all(),'id_to_bo_mon','ten')) ?>
+    <?= $form->field($model, 'id_to_bo_mon')->widget(DepDrop::className(), [
+        'pluginOptions'=>[
+            'depends'=>['teacher-id_khoa'],
+            'placeholder'=>'Select...',
+            'url'=>Url::toRoute(['teacher/view'])
+        ]
+    ]) ?>
 
     <?= $form->field($model, 'dinh_muc')->textInput() ?>
 
@@ -34,28 +42,4 @@ $bunel = AppAsset::register($this);
 
     <?php ActiveForm::end(); ?>
 
-    <script>
-        $(document).ready(function () {
-            $('#teacher-id_khoa').change(function () {
-                var value=$(this).val();
-              var toBoMon= $('#teacher-id_to_bo_mon');
-                toBoMon.find('option').each(function () {
-                    $(this).remove();
-                });
-                $.ajax(
-                    {
-                        'url':'ajax',
-                        'cache':false,
-                        'type':'post',
-                        'data':{
-                            id:value
-                        },
-                        success:function (resutl) {
-                           toBoMon.append(resutl);
-                        }
-                    }
-                )
-            })
-        })
-    </script>
 </div>

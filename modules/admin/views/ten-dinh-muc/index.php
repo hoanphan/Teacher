@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\modules\admin\modelSeach\TenDinhMucSeach */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Ten Dinh Mucs';
+$this->title = 'Danh sách tên định mức';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ten-dinh-muc-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Ten Dinh Muc', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Thêm mới tên định mức', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,8 +24,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'ten_loai_dinh_muc',
-            'bang_duoc_dinh_muc',
+            [
+                'attribute'=>'bang_duoc_dinh_muc',
+                'filter'=>[1=>'Bảng I',2=>'Bảng II',3=>'Bảng III',4=>'Bảng IV',5=>'Bảng V'],
+                'value'=>function($data)
+                {
+                    return $data->getTextNorm($data->bang_duoc_dinh_muc);
+                }
 
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\User;
 use Yii;
 use app\models\BangIii;
 use app\modules\admin\modelSeach\BangIiiSeach;
@@ -74,10 +75,17 @@ class BangIiiController extends Controller
     public function actionCreate()
     {
         $model = new BangIii();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'id' => $model->id]);
-        } else {
+        if ($model->load(Yii::$app->request->post())) {
+            if(!User::isAdmin())
+                $model->id_gv=User::getTecher();
+            if ($model->save()) {
+                return $this->redirect(['index', 'id' => $model->id]);
+            }
+            else
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+        }else {
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -94,10 +102,18 @@ class BangIiiController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
+        if ($model->load(Yii::$app->request->post())) {
+            if(!User::isAdmin())
+                $model->id_gv=User::getTecher();
+            if ($model->save()) {
+                return $this->redirect(['index', 'id' => $model->id]);
+            }
+            else
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+        }else {
+            return $this->render('create', [
                 'model' => $model,
             ]);
         }

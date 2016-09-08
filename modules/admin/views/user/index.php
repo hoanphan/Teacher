@@ -29,7 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'lastname',
             'username',
             'password',
-            // 'authkey',
+            [
+                'attribute'=>'authkey',
+                'filter'=>\yii\helpers\ArrayHelper::map(\app\models\Teacher::find()->asArray()->all(),'id_gv','ho_ten')
+                ,'value'=>function($data) {
+                    return $data->getTextGv($data->authkey);
+            }
+            ],
             [
                 'attribute'=> 'rule',
                 'filter'=>[0=>'admin',1=>'read'],

@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\modelSeach;
 
+use app\models\User;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -42,8 +43,14 @@ class BacTccnSeach extends BacTccn
      */
     public function search($params)
     {
-        $query = BacTccn::find();
-
+        $query='';
+        if(User::isAdmin()) {
+            $query = BacTccn::find();
+        }
+        else
+        {
+            $query=BacTccn::find()->where(['id_gv'=>User::getTecher()]);
+        }
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([

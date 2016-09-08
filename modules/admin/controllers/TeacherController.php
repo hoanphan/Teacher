@@ -7,6 +7,7 @@ use app\models\To_Bo_Mon;
 use Yii;
 use app\models\teacher;
 use app\modules\admin\modelSeach\TeacherSeach;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -61,11 +62,29 @@ class TeacherController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView()
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $cat_id = $parents[0];
+                $value=To_Bo_Mon::find()->where(['id_khoa'=>$cat_id])->all();
+                for ($i=0;$i<count($value);$i++)
+                {
+                    array_push($out,['id'=>$value[$i]->id_to_bo_mon,'name'=>$value[$i]->ten]);
+                }
+                // the getSubCatList function will query the database based on the
+                // cat_id and return an array like below:
+                // [
+                //    ['id'=>'<sub-cat-id-1>', 'name'=>'<sub-cat-name1>'],
+                //    ['id'=>'<sub-cat_id_2>', 'name'=>'<sub-cat-name2>']
+                // ]
+                echo Json::encode(['output'=>$out, 'selected'=>'']);
+                return;
+            }
+        }
+        echo Json::encode(['output'=>'', 'selected'=>'']);
     }
 
     /**
@@ -97,9 +116,9 @@ class TeacherController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'id' => $model->id_gv]);
+            return $this->redirect(['update', 'id' => $model->id_gv]);
         } else {
-            return $this->render('update', [
+            return $this->render('index', [
                 'model' => $model,
             ]);
         }
@@ -144,6 +163,14 @@ class TeacherController extends Controller
              $str=$str.'<option value="'.$value[$i]->id_to_bo_mon.'">'.$value[$i]->ten.'</option>';
         }
         echo $str;
+
+    }
+    public function actionChild()
+    {
+       echo 'aaaa';
+    }
+
+    public function actionSubcat() {
 
     }
 }

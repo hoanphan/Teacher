@@ -25,6 +25,7 @@ class AppAsset extends AssetBundle
 
             'font-awesome/4.2.0/css/font-awesome.min.css',
             'fonts/fonts.googleapis.com.css',
+
             'css/ace.min.css'
         ];
         $this->js = [

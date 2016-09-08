@@ -14,9 +14,9 @@ use app\models\BangIii;
 <div class="bang-iii-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
+    <?php if(\app\models\User::isAdmin()):?>
     <?= $form->field($model, 'id_gv')->dropDownList(ArrayHelper::map(Teacher::find()->asArray()->all(),'id_gv','ho_ten')) ?>
-
+    <?php endif;?>
     <?= $form->field($model, 'ten')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'nhiem_thu')->textInput() ?>

@@ -5,6 +5,7 @@ use app\models\To_Bo_Mon;
 use app\models\Bac;
 use app\models\NhiemVuBac;
 use app\models\BangIii;
+use app\models\DinhMucCuaGiaoVien;
 
 /* @var $this yii\web\View */
 
@@ -14,19 +15,22 @@ $ngach = Ngach::findOne($teacher->id_ngach);
 $toBooMon = To_Bo_Mon::findOne($teacher->id_to_bo_mon);
 $bac = Bac::find()->all();
 $bac_tnccs = \app\models\BacTccn::findAll(['id_gv' => $teacher->id_gv, 'status' => 1]);
-$bangII=\app\models\BangIi::findAll(['status'=>1]);
-$bangIII=BangIii::findAll(['status'=>1]);
-$bangV=\app\models\BangV::findAll(['status'=>1]);
-$bangX=\app\models\Bangx::findAll(['status'=>1]);
+$bangII = \app\models\BangIi::findAll(['status' => 1,'id_gv' => $teacher->id_gv]);
+$bangIII = BangIii::findAll(['status' => 1,'id_gv' => $teacher->id_gv]);
+$bangV = \app\models\BangV::findAll(['status' => 1,'id_gv' => $teacher->id_gv]);
+$bangX = \app\models\Bangx::findAll(['status' => 1,'id_gv' => $teacher->id_gv]);
 
+$nhiemvu4 = 0;
+$nhiemvu3 = 0;
+$baccommon=0;
 $tong1 = 0;
 $tong2 = 0;
 $congbac = 0;
-$bac1=0;
-$tongII=0;
-$tongIII=0;
-$tongIV=0;
-$tongV=0;
+$bac1 = 0;
+$tongII = 0;
+$tongIII = 0;
+$tongIV = 0;
+$tongV = 0;
 $i = 0;
 ?>
 <style>
@@ -34,6 +38,15 @@ $i = 0;
         text-align: center;
     }
 
+    td {
+        text-align: center;
+        font-style: normal;
+    }
+</style>
+<style>
+    th {
+        text-align: center;
+    }
     td {
         text-align: center;
         font-style: normal;
@@ -109,9 +122,10 @@ $i = 0;
                 <td>9=7*8</td>
                 <td>10</td>
             </tr>
-            <?php $congbac=0?>
-            <?php $stt = 1; ?>
+            <?php $congbac = 0; ?>
+            <?php $stt = 1; ?>   <?php $tong1=0?>
             <?php foreach ($nhiemVuBacs as $nhiemVuBac): ?>
+
                 <?php $lop = \app\models\Lop::findOne($nhiemVuBac->id_lop);
                 $monHoc = \app\models\MonHoc::findOne($nhiemVuBac->id_mon_hoc) ?>
                 <tr>
@@ -243,11 +257,12 @@ $i = 0;
             <tr style="height: 30px">
                 <td></td>
                 <td colspan="13">Tổng</td>
-                <td><?php
-                           $congbac= round($congbac * $ngach->quy_chuan, 1);
-                    $bac1+=$congbac;
-                    echo $congbac;?></td>
-                <td></td>
+                <td><?= $tong1 ?></td>
+                <td>
+                    <?php echo $congbac=round($congbac * $ngach->quy_chuan, 1);
+                                $baccommon+=$congbac;
+                    ?>
+                </td>
 
             </tr>
 
@@ -409,7 +424,22 @@ $i = 0;
 </table>
 <!--III. Nhiệm vụ nghiên cứu khoa học đã hoàn thành (hoặc sản phẩm thay thế đề tài NCKH)   -->
 <div>
-    <label>III. Nhiệm vụ nghiên cứu khoa học đã hoàn thành (hoặc sản phẩm thay thế đề tài NCKH)</label>
+    <div class="col-xs-12">
+        <div class="col-xs-8">
+            <label>III. Nhiệm vụ nghiên cứu khoa học đã hoàn thành (hoặc sản phẩm thay thế đề tài NCKH)</label>
+        </div>
+        <div class="col-xs-4">
+            <?php $nhiemvu=DinhMucCuaGiaoVien::findOne(['id_teacher'=>$teacher->id_gv,'name_norms'=>\app\models\TenDinhMuc::getIdFollowName(3),'status'=>1]);
+            if($nhiemvu!=null)
+            {
+                $nhiemvu3=$nhiemvu->number;
+                echo 'Định mức:'.  $nhiemvu3. ' tiết';
+            }
+
+            ?>
+        </div>
+    </div>
+
 </div>
 <table class="table table-bordered">
     <thead>
@@ -439,7 +469,21 @@ $i = 0;
     </tbody>
 </table>
 <div>
-    <label>IV. Sinh hoạt chuyên môn, hội họp... (5)</label>
+    <div class="col-xs-12">
+        <div class="col-xs-8">
+            <label>IV. Sinh hoạt chuyên môn, hội họp... (5)</label>
+        </div>
+        <div class="col-xs-4">
+            <?php $nhiemvu=DinhMucCuaGiaoVien::findOne(['id_teacher'=>$teacher->id_gv,'name_norms'=>\app\models\TenDinhMuc::getIdFollowName(4),'status'=>1]);
+            if($nhiemvu!=null)
+            {
+                $nhiemvu4=$nhiemvu->number;
+                echo 'Định mức:'.  $nhiemvu4. ' tiết';
+            }
+
+            ?>
+        </div>
+    </div>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -500,14 +544,20 @@ $i = 0;
     </table>
 
 </div>
-<div>
-    <label>VI. Tổng số giờ (tiết chuẩn) đề nghị được thanh toán:</label>
-    <div class="col-xs-12">
-        <div class="col-xs-4">
-            VI = I + II + III + IV +V - (1)=
-        </div>
-        <div class="col-xs-4">
-           <?=$bac1+$tongII+$tongIII+$tongV+$tongV-$teacher->dinh_muc?> giờ
+    <div>
+        <label>VI. Tổng số giờ (tiết chuẩn) đề nghị được thanh toán:</label>
+        <div class="col-xs-12">
+            <div class="col-xs-3">
+                VI = I + II + III + IV +V - (1)=
+            </div>
+            <div class="col-xs-3">
+                 giờ
+            </div>
+            <div class="col-xs-3">
+                Giảng viên :<?= $tongV+$tongIV+$tongIII+$tongII+$baccommon-$nhiemvu4-$nhiemvu3-$teacher->dinh_muc?> giờ
+            </div>
+            <div class="col-xs-3">
+                Giáo viên :<?=$tongV+$tongIV+$tongIII+$tongII+round($baccommon / $ngach->quy_chuan, 0)-$nhiemvu4-$nhiemvu3-$teacher->dinh_muc?> giờ
+            </div>
         </div>
     </div>
-</div>

@@ -54,11 +54,18 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'lastname' => 'Họ và tên',
             'username' => 'Tên đăng nhập',
             'password' => 'Mật khẩu',
-            'authkey' => 'Authkey',
+            'authkey' => 'Giáo viên sử dụng',
             'rule'=>'Quyền'
         ];
     }
-
+    public function getTextGv($data)
+    {
+        $teacher=Teacher::findOne($data);
+        if($teacher==null)
+            return 'Unknown';
+        else
+            return $teacher->ho_ten;
+    }
     /**
      * Finds an identity by the given ID.
      * @param string|integer $id the ID to be looked for
@@ -171,5 +178,42 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             return 'read';
         else
             return 'Unknown';
+    }
+    public static function isAdmin()
+    {
+        $id= Yii::$app->user->id;
+        $user=User::findOne($id);
+        if($user->rule==0)
+            return true;
+        else
+            return false;
+    }
+    public static function getIdTeacher($id)
+    {
+        $teacher=User::findOne($id);
+        if($teacher==null)
+        {
+            return '';
+        }
+        else
+            return $teacher->authkey;
+    }
+    public static function getTecher()
+    {
+        $id=Yii::$app->user->id;
+        $teacher=User::findOne($id);
+        if($teacher==null)
+        {
+            return '';
+        }
+        else
+            return $teacher->authkey;
+    }
+    public static function isFilter($searchModel)
+    {
+        if(self::isAdmin())
+            return $searchModel;
+        else
+            return false;
     }
 }

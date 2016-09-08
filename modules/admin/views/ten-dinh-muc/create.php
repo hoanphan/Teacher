@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\TenDinhMuc */
 
-$this->title = 'Create Ten Dinh Muc';
+$this->title = 'Thêm mới tên định mức';
 $this->params['breadcrumbs'][] = ['label' => 'Ten Dinh Mucs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

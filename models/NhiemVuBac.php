@@ -132,4 +132,8 @@ class NhiemVuBac extends \yii\db\ActiveRecord
         else
             return "Unknown";
     }
+    public function getid($id_norm)
+    {
+        return TenDinhMuc::findOne(['bang_duoc_dinh_muc'=>$id_norm])->id;
+    }
 }

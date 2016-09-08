@@ -16,7 +16,9 @@ use app\models\NhiemVuBac;
 <div class="bac-tccn-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    <?php if(\app\models\User::isAdmin()):?>
     <?= $form->field($model, 'id_gv')->dropDownList(ArrayHelper::map(Teacher::find()->asArray()->all(),'id_gv','ho_ten')) ?>
+    <?php endif;?>
     <?= $form->field($model, 'id_lop')->dropDownList(ArrayHelper::map(Lop::find()->where(['status'=>1])->asArray()->all(),'id_lop','ten_lop')) ?>
 
     <?= $form->field($model, 'id_mon_hoc')->dropDownList(ArrayHelper::map(MonHoc::find()->where(['status'=>1])->asArray()->all(),'id_mon','te_mon')) ?>

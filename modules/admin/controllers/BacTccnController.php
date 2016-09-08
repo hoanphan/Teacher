@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\User;
 use Yii;
 use app\models\BacTccn;
 use app\modules\admin\modelSeach\BacTccnSeach;
@@ -75,9 +76,17 @@ class BacTccnController extends Controller
     public function actionCreate()
     {
         $model = new BacTccn();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()))
+        {
+            if (!User::isAdmin())
+                 $model->id_gv=User::getTecher();
+            if($model->save()) {
+                return $this->redirect(['index', 'id' => $model->id]);
+            }
+            else
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -95,10 +104,15 @@ class BacTccnController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post()))
+        {
+            if(!User::isAdmin())
+                 $model->id_gv=User::getTecher();
+            if($model->save()) {
+                return $this->redirect(['index', 'id' => $model->id]);
+            }
         } else {
-            return $this->render('update', [
+            return $this->render('create', [
                 'model' => $model,
             ]);
         }

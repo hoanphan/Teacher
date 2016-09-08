@@ -13,9 +13,9 @@ use app\models\Teacher;
 <div class="bang-ii-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
+    <?php if(\app\models\User::isAdmin()):?>
     <?= $form->field($model, 'id_gv')->dropDownList(ArrayHelper::map(Teacher::find()->asArray()->all(),'id_gv','ho_ten')) ?>
-
+    <?php endif;?>
     <?= $form->field($model, 'noi_dung')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'thoi_gian_th')->textInput(['maxlength' => true]) ?>
